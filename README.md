@@ -1,2 +1,2 @@
-# Pankkiautomaatti_S2017
+# Pankkiautomaatti_K2017
 Ohjelmoinnin sovellusprojekti
