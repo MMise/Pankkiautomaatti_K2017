@@ -7,11 +7,13 @@
 #include <QDebug>
 #include <QString>
 
+#include "pinkoodi_global.h"
+
 class Pinkoodi
 {
 
 public:
-    void rajapintafunktioPinkoodi();
+    void PINKOODISHARED_EXPORT rajapintafunktioPinkoodi();
     static bool createConnection()
     {
         QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
