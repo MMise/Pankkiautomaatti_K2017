@@ -17,8 +17,8 @@ public:
         QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
         db.setHostName("mysli.oamk.fi");
         db.setDatabaseName("opisk_t6jomi00");
-        db.setUserName("t6jomi00");
-        db.setPassword("okEyaA8PA6HrAsg6");
+        db.setUserName("");
+        db.setPassword("");
         if (!db.open()) {
             qDebug() << "Unable to establish a database connection";
             return false;
