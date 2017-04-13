@@ -20,17 +20,30 @@ mainMenu::~mainMenu()
     delete ui;
 }
 
+void mainMenu::setData(const QString &kortinNumero)
+{
+    korttiID = kortinNumero;
+}
+
 void mainMenu::naytaNosto()
 {
     nostovalikko->show();
+    nostovalikko->setData(korttiID);
 }
 
 void mainMenu::naytaSaldo()
 {
     saldovalikko->show();
+    saldovalikko->setData(korttiID);
 }
 
 void mainMenu::naytaTapahtumat()
 {
     tapahtumavalikko->show();
+    tapahtumavalikko->setData(korttiID);
+}
+
+void mainMenu::on_pushButtonUlos_clicked()
+{
+    this->close();
 }
