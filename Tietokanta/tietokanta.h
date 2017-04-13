@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QString>
+#include <QSqlTableModel>
 
 #include "tietokanta_global.h"
 
@@ -14,7 +15,7 @@ class Tietokanta
 
 public:
     bool TIETOKANTASHARED_EXPORT rajapintafunktioTietokanta();
-    int TIETOKANTASHARED_EXPORT nosto(int);
+    void TIETOKANTASHARED_EXPORT nosto(int);
     int TIETOKANTASHARED_EXPORT tarkastaSaldo();
     int TIETOKANTASHARED_EXPORT tarkastaPin();
     ~Tietokanta();
@@ -23,7 +24,6 @@ private:
     int tarkastaTapahtumat();
     double saldo;
     QString kortti = "0b0030522b";
-    QString perse;
     QSqlDatabase db;
     bool pinOk;
     QString annettupin;

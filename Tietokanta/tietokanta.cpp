@@ -6,8 +6,8 @@ bool Tietokanta::rajapintafunktioTietokanta()
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("mysli.oamk.fi");
     db.setDatabaseName("opisk_t6jomi00");
-    db.setUserName("");
-    db.setPassword("");
+    db.setUserName("t6jomi00");
+    db.setPassword("okEyaA8PA6HrAsg6");
     if (!db.open()) {
         qDebug() << "Unable to establish a database connection";
         return false;
@@ -36,8 +36,10 @@ Tietokanta::~Tietokanta()
     db.close();
 }
 
-int Tietokanta::nosto(int c)
+void Tietokanta::nosto(int c)
 {
+    int maara;
+    maara = c;
     QSqlQuery query;
     query.prepare("SELECT saldo from tili where id_kortti = :kortti");
     query.bindValue(":kortti", kortti);
@@ -52,7 +54,14 @@ int Tietokanta::nosto(int c)
         query.bindValue(":saldo", saldo);
         query.bindValue(":kortti", kortti);
         query.exec();
-        query.prepare("UPDATE tapahtuma SET")
+        QSqlTableModel model;
+        model.setTable("tapahtuma");
+        int row = 0;
+        model.insertRows(row,1);
+        model.setData(model.index(row, 1), kortti);
+        model.setData(model.index(row, 3), "NOSTO");
+        model.setData(model.index(row, 4), maara);
+        model.submitAll();
     }
     else {
         qDebug() << "Saldo ei riita" << endl;
