@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     paavalikko = new mainMenu;
+    koodinkysely = new Pinkoodi;
+    korttiID = "kek";
     this->setWindowTitle("BankSimul - Aloita");
     connect(ui->pushButton_lueKortti,SIGNAL(clicked(bool)),this,SLOT(naytaValikko()));
 }
@@ -18,6 +20,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::naytaValikko()
 {
-    paavalikko->show();
+    //paavalikko->show();
+    paavalikko->setData(korttiID);
+    koodinkysely->rajapintafunktioPinkoodi();
     this->close();
 }
+

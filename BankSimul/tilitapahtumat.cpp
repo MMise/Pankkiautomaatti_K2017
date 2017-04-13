@@ -14,6 +14,11 @@ tilitapahtumat::~tilitapahtumat()
     delete ui;
 }
 
+void tilitapahtumat::setData(const QString &kortinNumero)
+{
+    korttiID = kortinNumero;
+}
+
 void tilitapahtumat::on_pushButton_clicked()
 {
     this->close();

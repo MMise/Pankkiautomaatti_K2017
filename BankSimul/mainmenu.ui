@@ -16,8 +16,8 @@
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>10</y>
+     <x>290</x>
+     <y>0</y>
      <width>181</width>
      <height>441</height>
     </rect>
@@ -63,6 +63,16 @@
     </property>
     <property name="text">
      <string>Tilitapahtumat</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonUlos">
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Kirjaudu ulos</string>
     </property>
    </widget>
   </widget>

@@ -18,3 +18,8 @@ void saldontarkastus::on_pushButton_clicked()
 {
     this->close();
 }
+
+void saldontarkastus::setData(const QString &kortinNumero)
+{
+    korttiID = kortinNumero;
+}

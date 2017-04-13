@@ -16,10 +16,10 @@ rahannosto::~rahannosto()
     delete ui;
 }
 
-/*void rahannosto::asetaSumma()
+void rahannosto::setData(const QString &kortinNumero)
 {
-    summa = ui->lineEditNosto->text();
-}*/
+    korttiID = kortinNumero;
+}
 
 void rahannosto::on_pushButton1_clicked()
 {

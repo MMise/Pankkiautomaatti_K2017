@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 namespace Ui {
 class rahannosto;
@@ -15,6 +16,7 @@ class rahannosto : public QDialog
 public:
     explicit rahannosto(QWidget *parent = 0);
     ~rahannosto();
+    void setData(const QString &kortinNumero);
 
 private slots:
     void on_pushButton1_clicked();
@@ -54,6 +56,7 @@ private slots:
 private:
     Ui::rahannosto *ui;
     QString summa;
+    QString korttiID;
     int nosto;
 };
 
