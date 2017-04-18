@@ -32,6 +32,19 @@
      <string>Lue kortti</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButtonTESTI">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>340</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

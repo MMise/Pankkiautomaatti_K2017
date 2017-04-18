@@ -2,7 +2,6 @@
 #define RAHANNOSTO_H
 
 #include <QDialog>
-#include <QMessageBox>
 #include <QDebug>
 
 namespace Ui {

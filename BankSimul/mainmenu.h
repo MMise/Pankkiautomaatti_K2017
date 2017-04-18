@@ -23,6 +23,9 @@ public slots:
     void naytaNosto();
     void naytaSaldo();
     void naytaTapahtumat();
+    void nostoKlikattiin();
+signals:
+    nostoSignaali();
 
 private slots:
 

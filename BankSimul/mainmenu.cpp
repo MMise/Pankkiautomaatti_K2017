@@ -13,6 +13,9 @@ mainMenu::mainMenu(QWidget *parent) :
     connect(ui->pushButtonNosto,SIGNAL(clicked(bool)),this,SLOT(naytaNosto()));
     connect(ui->pushButtonSaldo,SIGNAL(clicked(bool)),this,SLOT(naytaSaldo()));
     connect(ui->pushButtonTilitapahtumat,SIGNAL(clicked(bool)),this,SLOT(naytaTapahtumat()));
+    connect(ui->pushButtonNosto, SIGNAL(clicked(bool)),this,SLOT(nostoKlikattiin()));
+    //connect(parent,SIGNAL(testi()),this,SLOT());
+
 }
 
 mainMenu::~mainMenu()
@@ -41,6 +44,11 @@ void mainMenu::naytaTapahtumat()
 {
     tapahtumavalikko->show();
     tapahtumavalikko->setData(korttiID);
+}
+
+void mainMenu::nostoKlikattiin()
+{
+    emit nostoSignaali();
 }
 
 void mainMenu::on_pushButtonUlos_clicked()
