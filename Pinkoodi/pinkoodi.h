@@ -1,20 +1,26 @@
 #ifndef PINKOODI_H
 #define PINKOODI_H
 
+#include <QDebug>
 #include "pinkoodi_global.h"
 #include "pinkoodimoottoridialogi.h"
 
-class Pinkoodi
+class Pinkoodi : public QObject
 {
+    Q_OBJECT
 
 public:
-    //Pinkoodi();
+    explicit PINKOODISHARED_EXPORT Pinkoodi();
+    PINKOODISHARED_EXPORT ~Pinkoodi();
     void PINKOODISHARED_EXPORT rajapintafunktioPinkoodi();
-    int palautaPinExelle();
-    void pyydaPin(); //pyytää pinkoodimoottoridialogilta PIN-koodin.
+
 private:
     pinkoodiMoottoriDialogi *pinkoodiUi;
-    int PIN;
+    QString PIN;
+signals:
+     void PINKOODISHARED_EXPORT pinkoodiSignaali(QString pin);
+public slots:
+    void palautaPinExelle();
 };
 
 #endif // PINKOODI_H

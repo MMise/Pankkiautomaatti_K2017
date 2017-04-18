@@ -16,12 +16,15 @@ class pinkoodiMoottoriDialogi : public QDialog
 public:
     explicit pinkoodiMoottoriDialogi(QWidget *parent = 0);
     ~pinkoodiMoottoriDialogi();
-    int palautaPin();
 
 private:
     Ui::pinkoodiMoottoriDialogi *ui;
-    QString pinKoodiNaru;
-    int pinKoodi;
+    QString pinKoodi;
+signals:
+    void passPin(QString pin);
+public slots:
+    //void klikattuOK();
+
 private slots:
     void on_pushButton1_clicked();
 
@@ -46,6 +49,7 @@ private slots:
     void on_pushButtonC_clicked();
 
     void on_pushButtonOK_clicked();
+
 };
 
 #endif // PINKOODIMOOTTORIDIALOGI_H

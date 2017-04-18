@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += widgets
+QT += widgets gui
 TARGET = pinkoodi
 TEMPLATE = lib
 
