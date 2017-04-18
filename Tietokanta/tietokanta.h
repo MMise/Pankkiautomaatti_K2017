@@ -4,9 +4,11 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlTableModel>
+#include <QSqlRecord>
 #include <QDebug>
 #include <QString>
-#include <QSqlTableModel>
+#include <QDate>
 
 #include "tietokanta_global.h"
 
@@ -18,13 +20,14 @@ public:
     void TIETOKANTASHARED_EXPORT nosto(int);
     int TIETOKANTASHARED_EXPORT tarkastaSaldo();
     int TIETOKANTASHARED_EXPORT tarkastaPin();
+    QString TIETOKANTASHARED_EXPORT tarkastaTapahtumat();
     ~Tietokanta();
 
 private:
-    int tarkastaTapahtumat();
     double saldo;
-    QString kortti = "0b0030522b";
+    QString kortti = "0";
     QSqlDatabase db;
+    QSqlTableModel model;
     bool pinOk;
     QString annettupin;
     QString salasana;

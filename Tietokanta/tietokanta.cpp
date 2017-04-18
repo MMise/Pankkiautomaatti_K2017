@@ -2,7 +2,6 @@
 #include <QDebug>
 bool Tietokanta::rajapintafunktioTietokanta()
 {
-    qDebug() << "in fuction rajapintapintafunktio" << endl;
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("mysli.oamk.fi");
     db.setDatabaseName("opisk_t6jomi00");
@@ -19,7 +18,6 @@ bool Tietokanta::rajapintafunktioTietokanta()
 
 int Tietokanta::tarkastaSaldo()
 {
-    qDebug() << "in function tarkastaSaldo" << endl;
     QSqlQuery query;
     query.prepare("SELECT saldo from tili where id_kortti = :kortti");
     query.bindValue(":kortti", kortti);
@@ -54,7 +52,6 @@ void Tietokanta::nosto(int c)
         query.bindValue(":saldo", saldo);
         query.bindValue(":kortti", kortti);
         query.exec();
-        QSqlTableModel model;
         model.setTable("tapahtuma");
         int row = 0;
         model.insertRows(row,1);
@@ -89,5 +86,29 @@ int Tietokanta::tarkastaPin()
 
     }
     return pinOk;
+}
+
+QString Tietokanta::tarkastaTapahtumat()
+{
+    QDate aika;
+    QString paiva, tapahtuma, maara;
+    QSqlTableModel model;
+    QString status = QString("id_kortti = '%1'").arg(kortti);
+    model.setTable("tapahtuma");
+    model.setFilter(status);
+    model.select();
+    int rivi = model.rowCount();
+    for (int i = 0; rivi > i; i++) {
+        QSqlRecord record = model.record(i);
+        aika = record.value("aika").toDate();
+        paiva = aika.toString("dd.MM.yyyy");
+        tapahtuma = record.value("tapahtuma").toString();
+        maara = record.value(4).toString();
+        qDebug() << paiva << tapahtuma << maara << "e" << endl;
+
+    }
+    return paiva;
+    return tapahtuma;
+    return maara;
 }
 
