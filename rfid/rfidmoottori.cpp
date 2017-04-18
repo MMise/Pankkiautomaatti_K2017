@@ -1,9 +1,18 @@
 #include "rfidmoottori.h"
+#include <QSerialPortInfo>
 
 rfidMoottori::rfidMoottori()
 {
     serial = new QSerialPort();
-    serial->setPortName("COM12"); //saattaa vaihtua
+
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) { //etsi laite
+           if(info.description() == "USB Serial Device") {
+               serial->setPort(info);
+               break;
+           }
+    }
+
+    //serial->setPortName("COM12"); //saattaa vaihtua
     serial->setBaudRate(QSerialPort::Baud9600);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);

@@ -14,5 +14,5 @@ Rfid::~Rfid() {
 
 void Rfid::KorttiLuettu(QString arg) {
     emit rajapintaLueKortti(arg);
-    qDebug() << "rajapinta signaali";
+    //qDebug() << "rajapinta signaali";
 }
