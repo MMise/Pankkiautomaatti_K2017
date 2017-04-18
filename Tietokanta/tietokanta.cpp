@@ -3,8 +3,8 @@
 bool Tietokanta::rajapintafunktioTietokanta()
 {
     db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("mysli.oamk.fi");
-    db.setDatabaseName("opisk_t6jomi00");
+    db.setHostName("salaisuus");
+    db.setDatabaseName("salaisuus");
     db.setUserName("salaisuus");
     db.setPassword("salaisuus");
     if (!db.open()) {
