@@ -22,7 +22,7 @@ public:
     int TIETOKANTASHARED_EXPORT tarkastaPin();
     QString TIETOKANTASHARED_EXPORT tarkastaTapahtumat();
     void TIETOKANTASHARED_EXPORT vastaanotaKortti(QString card);
-    ~Tietokanta();
+    TIETOKANTASHARED_EXPORT ~Tietokanta();
 
 private:
     double saldo;
