@@ -21,6 +21,7 @@ public:
     int TIETOKANTASHARED_EXPORT tarkastaSaldo();
     int TIETOKANTASHARED_EXPORT tarkastaPin();
     QString TIETOKANTASHARED_EXPORT tarkastaTapahtumat();
+    void TIETOKANTASHARED_EXPORT vastaanotaKortti(QString card);
     ~Tietokanta();
 
 private:
