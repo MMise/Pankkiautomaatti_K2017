@@ -1,0 +1,1 @@
+Tietokannan ominaisuudet
