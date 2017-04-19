@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "mainmenu.h"
+#include <QDebug>
+#include <QWidget>
 #include "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\BankSimul\pinkoodi\pinkoodi.h"
 #include "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\BankSimul\Tietokanta\tietokanta.h"
 #include "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\BankSimul\rfid\rfid.h"
@@ -24,14 +25,62 @@ public slots:
     void setPin(QString str);
 
 private slots:
-    void on_pushButtonTESTI_clicked();
+
+    void on_pushButton_lueKortti_clicked();
+
+    void on_pushButtonNosto_2_clicked();
+
+    void on_pushButtonSaldo_2_clicked();
+
+    void on_pushButtonTilitapahtumat_2_clicked();
+
+    void on_pushButtonUlos_2_clicked();
+
+    void on_pushButtonPeruuta_clicked();
+
+    void on_pushButtonPeruutaSaldo_clicked();
+
+    void on_pushButtonOkTilitapahtumat_clicked();
+
+    void on_pushButton1_clicked();
+
+    void on_pushButton2_clicked();
+
+    void on_pushButton3_clicked();
+
+    void on_pushButton4_clicked();
+
+    void on_pushButton5_clicked();
+
+    void on_pushButton6_clicked();
+
+    void on_pushButton7_clicked();
+
+    void on_pushButton8_clicked();
+
+    void on_pushButton9_clicked();
+
+    void on_pushButton0_clicked();
+
+    void on_pushButtonC_clicked();
+
+    void on_pushButtonOK_clicked();
+
+    void on_pushButton20_clicked();
+
+    void on_pushButton40_clicked();
+
+    void on_pushButton60_clicked();
+
+    void on_pushButton80_clicked();
 
 private:
     Ui::MainWindow *ui;
     QString korttiID;
     QString pinKoodi;
-    mainMenu *paavalikko;
     Pinkoodi *koodinkysely;
+    QString summa;
+    int nosto;
     //Tietokanta *tietokanta;
     int PIN;
 };

@@ -15,23 +15,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    mainmenu.cpp \
-    rahannosto.cpp \
-    saldontarkastus.cpp \
-    tilitapahtumat.cpp
+        mainwindow.cpp
 
-HEADERS  += mainwindow.h \
-    mainmenu.h \
-    rahannosto.h \
-    saldontarkastus.h \
-    tilitapahtumat.h
+HEADERS  += mainwindow.h
 
-FORMS    += mainwindow.ui \
-    mainmenu.ui \
-    rahannosto.ui \
-    saldontarkastus.ui \
-    tilitapahtumat.ui
+FORMS    += mainwindow.ui
 
 win32:LIBS += "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\build-BankSimul-Desktop_Qt_5_7_0_MinGW_32bit-Release\release\pinkoodi.dll"
 win32:LIBS += "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\build-BankSimul-Desktop_Qt_5_7_0_MinGW_32bit-Release\release\tietokanta.dll"
