@@ -32,6 +32,7 @@ private:
     bool pinOk;
     QString annettupin;
     QString salasana;
+    QString tilinumero;
 };
 
 #endif // TIETOKANTA_H
