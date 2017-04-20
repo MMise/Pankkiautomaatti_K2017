@@ -2,7 +2,7 @@
 
 void Pinkoodi::rajapintafunktioPinkoodi(QString &palautettavaPin)
 { 
-    qDebug() << "Pin: " << palautettavaPin;
+
     pinkoodiUi = new pinkoodiMoottoriDialogi;
     pinkoodiUi->show();
     pinkoodiUi->exec();

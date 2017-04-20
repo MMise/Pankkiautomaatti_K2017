@@ -5,10 +5,8 @@ pinkoodiMoottoriDialogi::pinkoodiMoottoriDialogi(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::pinkoodiMoottoriDialogi)
 {
-    qDebug() << "Moottori luotu";
     ui->setupUi(this);
     ui->lineEditPin->setValidator(new QIntValidator);
-
 }
 
 pinkoodiMoottoriDialogi::~pinkoodiMoottoriDialogi()
@@ -79,7 +77,6 @@ void pinkoodiMoottoriDialogi::on_pushButtonC_clicked()
 void pinkoodiMoottoriDialogi::on_pushButtonOK_clicked()
 {
     pinKoodi = ui->lineEditPin->text();
-    qDebug() << "Moottorilta palautettiin PIN-koodi: " << pinKoodi;
     this->close();
 }
 
