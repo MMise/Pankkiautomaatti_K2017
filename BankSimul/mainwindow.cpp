@@ -12,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     tietokanta = new Tietokanta;
     tietokanta->rajapintafunktioTietokanta();
-    tietokanta->vastaanotaKortti("0b0030522b");
 
     kortinlukija = new Rfid;
     connect(kortinlukija,SIGNAL(rajapintaLueKortti(QString)),this,SLOT(kortinLukeminen(QString)));
@@ -40,13 +39,13 @@ void MainWindow::kortinLukeminen(QString card)
 void MainWindow::on_pushButton_lueKortti_clicked()
 {
 
-    /*PIN = pinKoodi.toInt();
+    PIN = pinKoodi.toInt();
     if(tietokanta->vastaanotaPin(PIN)){
         ui->stackedWidget->setCurrentIndex(1);
     }else{
         qDebug() << "PIN-koodi ei täsmää";
-    }*/
-    ui->stackedWidget->setCurrentIndex(1);
+        ui->pushButton_lueKortti->setEnabled(false);
+    }
 }
 
 void MainWindow::on_pushButtonNosto_2_clicked()
