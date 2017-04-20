@@ -6,46 +6,42 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //tietokanta = new Tietokanta;
-    //tietokanta->rajapintafunktioTietokanta();
-    this->setWindowTitle("BankSimul - Aloita");
+    tietokanta = new Tietokanta;
+    tietokanta->rajapintafunktioTietokanta();
+    kortinlukija = new Rfid;
+    connect(kortinlukija,SIGNAL(rajapintaLueKortti(QString)),this,SLOT(kortinLukeminen(QString)));
+    //tietokanta->vastaanotaKortti("0b0030522b");
+    this->setWindowTitle("BankSimul");
     ui->stackedWidget->setCurrentIndex(0);
     koodinkysely = new Pinkoodi;
-    //connect(ui->pushButton_lueKortti,SIGNAL(clicked(bool)),this,SLOT(naytaValikko()));
-    connect(koodinkysely,SIGNAL(pinkoodiSignaali(QString)),this,SLOT(setPin(QString)));
+    //connect(koodinkysely,SIGNAL(pinkoodiSignaali(QString)),this,SLOT(setPin(QString)));
 }
 
 MainWindow::~MainWindow()
 {
     delete koodinkysely;
+    delete tietokanta;
     delete ui;
 }
 
-void MainWindow::naytaValikko()
+void MainWindow::kortinLukeminen(QString card)
 {
-    //paavalikko->show();
-    //paavalikko->setData(korttiID);
-    koodinkysely->rajapintafunktioPinkoodi();
-    this->close();
-}
-
-void MainWindow::setPin(QString str)
-{
-    qDebug() << "Päästiin PIN-koodin asetukseen";
-    PIN = str.toInt();
-    qDebug() << PIN;
+    korttiID = card;
+    tietokanta->vastaanotaKortti(korttiID);
+    qDebug() << korttiID;
+    koodinkysely->rajapintafunktioPinkoodi(pinKoodi);
 }
 
 
 void MainWindow::on_pushButton_lueKortti_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    /*
-     * Tänne koodia, jossa luetaan kortti
-     * ja jos kortti löytyy tietokannasta,
-     * näytetään PIN-koodin kysely.
-     * Jos PIN-koodi on OK, suoritetaan yllä oleva rivi
-     * */
+
+    PIN = pinKoodi.toInt();
+    if(tietokanta->vastaanotaPin(PIN)){
+        ui->stackedWidget->setCurrentIndex(1);
+    }else{
+        qDebug() << "PIN-koodi ei täsmää";
+    }
 }
 
 void MainWindow::on_pushButtonNosto_2_clicked()
@@ -56,15 +52,22 @@ void MainWindow::on_pushButtonNosto_2_clicked()
 void MainWindow::on_pushButtonSaldo_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    saldo = tietokanta->tarkastaSaldo();
+    saldoNaru = QString::number(saldo);
+    ui->labelSaldo_3->setText(saldoNaru);
 }
 
 void MainWindow::on_pushButtonTilitapahtumat_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
+
 }
 
 void MainWindow::on_pushButtonUlos_2_clicked()
 {
+    pinKoodi = "";
+    PIN = 0;
+    korttiID = "";
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -142,28 +145,42 @@ void MainWindow::on_pushButtonOK_clicked()
 {
     summa = ui->lineEditNosto->text();
     nosto = summa.toInt();
-    /*
-     * Tänne koodia, joka tarkastaa saldon riittävyyden
-     *
-        */
+    if(nosto % 20 == 0 || nosto % 50 == 0){
+        tietokanta->nosto(nosto);
+    }else{
+        qDebug() << "Et voi nostaa summaa:" << nosto;
+    }
+
 }
 
 void MainWindow::on_pushButton20_clicked()
 {
     nosto = 20;
+    tietokanta->nosto(nosto);
+    qDebug() << "Nostettiin:" << nosto;
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::on_pushButton40_clicked()
 {
     nosto = 40;
+    tietokanta->nosto(nosto);
+    qDebug() << "Nostettiin:" << nosto;
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::on_pushButton60_clicked()
 {
     nosto = 60;
+    tietokanta->nosto(nosto);
+    qDebug() << "Nostettiin:" << nosto;
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::on_pushButton80_clicked()
 {
     nosto = 80;
+    tietokanta->nosto(nosto);
+    qDebug() << "Nostettiin:" << nosto;
+    ui->stackedWidget->setCurrentIndex(1);
 }

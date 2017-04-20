@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QWidget>
+#include <QSqlTableModel>
+#include <QSqlRecord>
+#include <QDate>
 #include "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\BankSimul\pinkoodi\pinkoodi.h"
 #include "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\BankSimul\Tietokanta\tietokanta.h"
 #include "C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\BankSimul\rfid\rfid.h"
@@ -21,8 +24,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void naytaValikko();
-    void setPin(QString str);
+    void kortinLukeminen(QString card);
 
 private slots:
 
@@ -76,13 +78,19 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
     QString korttiID;
     QString pinKoodi;
-    Pinkoodi *koodinkysely;
+    QString saldoNaru;
     QString summa;
-    int nosto;
-    //Tietokanta *tietokanta;
+
+    Pinkoodi *koodinkysely;
+    Tietokanta *tietokanta;
+    Rfid *kortinlukija;
+
     int PIN;
+    int nosto;
+    double saldo;
 };
 
 #endif // MAINWINDOW_H
