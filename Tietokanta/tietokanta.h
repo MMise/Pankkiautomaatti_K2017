@@ -9,8 +9,11 @@
 #include <QDebug>
 #include <QString>
 #include <QDate>
+#include <QTableView>
+#include "tietokantadialog.h"
 
 #include "tietokanta_global.h"
+
 
 class Tietokanta
 {
@@ -20,19 +23,19 @@ public:
     void TIETOKANTASHARED_EXPORT nosto(int);
     int TIETOKANTASHARED_EXPORT tarkastaSaldo();
     bool TIETOKANTASHARED_EXPORT vastaanotaPin(int pin);
-    QString TIETOKANTASHARED_EXPORT tarkastaTapahtumat();
+    void TIETOKANTASHARED_EXPORT tarkastaTapahtumat();
     void TIETOKANTASHARED_EXPORT vastaanotaKortti(QString card);
     TIETOKANTASHARED_EXPORT ~Tietokanta();
 
 private:
     double saldo;
-    QString kortti = "0";
+    QString kortti = "0b0030522b";
     QSqlDatabase db;
-    QSqlTableModel model;
+    QSqlTableModel *model;
     bool pinOk;
     int annettupin;
     int salasana;
-    QString tilinumero;
+    QString tilinumero = "123456";
 };
 
 #endif // TIETOKANTA_H

@@ -12,6 +12,7 @@ bool Tietokanta::rajapintafunktioTietokanta()
         return false;
     }
     else {
+        model = new QSqlTableModel;
         return true;
     }
 }
@@ -65,13 +66,14 @@ void Tietokanta::nosto(int c)
         query.bindValue(":saldo", saldo);
         query.bindValue(":tilinumero", tilinumero);
         query.exec();
-        model.setTable("tapahtuma");
-        int row = 0;
-        model.insertRows(row,1);
-        model.setData(model.index(row, 1), tilinumero);
-        model.setData(model.index(row, 3), "NOSTO");
-        model.setData(model.index(row, 4), maara);
-        model.submitAll();
+        model->setTable("tapahtuma");
+        model->select();
+        int row = model->rowCount();
+        model->insertRows(row,1);
+        model->setData(model->index(row, 1), tilinumero);
+        model->setData(model->index(row, 3), "NOSTO");
+        model->setData(model->index(row, 4), maara);
+        model->submitAll();
     }
     else {
         qDebug() << "Saldo ei riita" << endl;
@@ -99,13 +101,12 @@ bool Tietokanta::vastaanotaPin(int pin)
     return pinOk;
 }
 
-QString Tietokanta::tarkastaTapahtumat()
+void Tietokanta::tarkastaTapahtumat()
 {
     QSqlRecord record;
     QDate aika;
     QString paiva, tapahtuma, maara;
-    QSqlTableModel *model = new QSqlTableModel;
-    QString status = QString("tilinumero = '%1'").arg(tilinumero);
+    QString status = QString("tilinumero = '%1' order by aika DESC limit 10").arg(tilinumero);
     model->setTable("tapahtuma");
     model->setFilter(status);
     model->select();
@@ -119,9 +120,12 @@ QString Tietokanta::tarkastaTapahtumat()
         qDebug() << paiva << tapahtuma << maara << "e" << endl;
 
     }
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("PVM"));
-    model->setHeaderData(1,Qt::Horizontal, QObject::tr("Tapahtuma"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Määrä"));
-    //return *model;
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PVM"));
+    model->setHeaderData(3,Qt::Horizontal, QObject::tr("Tapahtuma"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Määrä"));
+    TietokantaDialog *dialog = new TietokantaDialog;
+    dialog->luoTable(*model);
 }
+
+
 
