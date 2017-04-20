@@ -19,7 +19,7 @@ public:
     bool TIETOKANTASHARED_EXPORT rajapintafunktioTietokanta();
     void TIETOKANTASHARED_EXPORT nosto(int);
     int TIETOKANTASHARED_EXPORT tarkastaSaldo();
-    int TIETOKANTASHARED_EXPORT tarkastaPin();
+    bool TIETOKANTASHARED_EXPORT vastaanotaPin(int pin);
     QString TIETOKANTASHARED_EXPORT tarkastaTapahtumat();
     void TIETOKANTASHARED_EXPORT vastaanotaKortti(QString card);
     TIETOKANTASHARED_EXPORT ~Tietokanta();

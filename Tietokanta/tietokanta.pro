@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += sql
-
-QT       -= gui
+QT       += sql gui widgets
 
 TARGET = tietokanta
 TEMPLATE = lib
@@ -33,4 +31,6 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+FORMS +=
 

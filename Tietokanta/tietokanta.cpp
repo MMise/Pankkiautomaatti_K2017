@@ -78,41 +78,40 @@ void Tietokanta::nosto(int c)
     }
 }
 
-int Tietokanta::tarkastaPin()
+bool Tietokanta::vastaanotaPin(int pin)
 {
-    annettupin = "1234";
-    QSqlQuery pin;
-    pin.prepare("SELECT salasana from kortti where id_kortti = :kortti");
-    pin.bindValue(":kortti", kortti);
-    pin.exec();
-    while (pin.next()) {
-        salasana = pin.value(0).toString();
+    annettupin = pin;
+    QSqlQuery pinkysy;
+    pinkysy.prepare("SELECT salasana from kortti where id_kortti = :kortti");
+    pinkysy.bindValue(":kortti", kortti);
+    pinkysy.exec();
+    while (pinkysy.next()) {
+        salasana = pinkysy.value(0).toString();
     }
 
     int ch = QString::compare(annettupin,salasana);
-    if(ch == 0)
-    {
+    if(ch == 0){
         pinOk = true;
     }
     if (ch != 0) {
         pinOk = false;
-
     }
     return pinOk;
 }
 
 QString Tietokanta::tarkastaTapahtumat()
 {
+    QSqlRecord record;
     QDate aika;
     QString paiva, tapahtuma, maara;
-    QSqlTableModel model;
+    QSqlTableModel *model = new QSqlTableModel;
     QString status = QString("tilinumero = '%1'").arg(tilinumero);
-    model.setTable("tapahtuma");
-    model.setFilter(status);
-    model.select();
-    int rivi = model.rowCount();
+    model->setTable("tapahtuma");
+    model->setFilter(status);
+    model->select();
+    int rivi = model->rowCount();
     for (int i = 0; rivi > i; i++) {
-        QSqlRecord record = model.record(i);
+        record = model->record(i);
         aika = record.value("aika").toDate();
         paiva = aika.toString("dd.MM.yyyy");
         tapahtuma = record.value("tapahtuma").toString();
@@ -120,8 +119,9 @@ QString Tietokanta::tarkastaTapahtumat()
         qDebug() << paiva << tapahtuma << maara << "e" << endl;
 
     }
-    return paiva;
-    return tapahtuma;
-    return maara;
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("PVM"));
+    model->setHeaderData(1,Qt::Horizontal, QObject::tr("Tapahtuma"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Määrä"));
+    //return *model;
 }
 
