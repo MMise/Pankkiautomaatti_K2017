@@ -6,15 +6,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    tietokanta = new Tietokanta;
-    tietokanta->rajapintafunktioTietokanta();
-    kortinlukija = new Rfid;
-    connect(kortinlukija,SIGNAL(rajapintaLueKortti(QString)),this,SLOT(kortinLukeminen(QString)));
-    //tietokanta->vastaanotaKortti("0b0030522b");
     this->setWindowTitle("BankSimul");
     ui->stackedWidget->setCurrentIndex(0);
+    ui->pushButton_lueKortti->setEnabled(false);
+
+    tietokanta = new Tietokanta;
+    tietokanta->rajapintafunktioTietokanta();
+    tietokanta->vastaanotaKortti("0b0030522b");
+
+    kortinlukija = new Rfid;
+    connect(kortinlukija,SIGNAL(rajapintaLueKortti(QString)),this,SLOT(kortinLukeminen(QString)));
+
     koodinkysely = new Pinkoodi;
-    //connect(koodinkysely,SIGNAL(pinkoodiSignaali(QString)),this,SLOT(setPin(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -30,18 +33,20 @@ void MainWindow::kortinLukeminen(QString card)
     tietokanta->vastaanotaKortti(korttiID);
     qDebug() << korttiID;
     koodinkysely->rajapintafunktioPinkoodi(pinKoodi);
+    ui->pushButton_lueKortti->setEnabled(true);
 }
 
 
 void MainWindow::on_pushButton_lueKortti_clicked()
 {
 
-    PIN = pinKoodi.toInt();
+    /*PIN = pinKoodi.toInt();
     if(tietokanta->vastaanotaPin(PIN)){
         ui->stackedWidget->setCurrentIndex(1);
     }else{
         qDebug() << "PIN-koodi ei täsmää";
-    }
+    }*/
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::on_pushButtonNosto_2_clicked()
@@ -59,8 +64,7 @@ void MainWindow::on_pushButtonSaldo_2_clicked()
 
 void MainWindow::on_pushButtonTilitapahtumat_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(4);
-
+    tietokanta->tarkastaTapahtumat();
 }
 
 void MainWindow::on_pushButtonUlos_2_clicked()
@@ -69,6 +73,7 @@ void MainWindow::on_pushButtonUlos_2_clicked()
     PIN = 0;
     korttiID = "";
     ui->stackedWidget->setCurrentIndex(0);
+    ui->pushButton_lueKortti->setEnabled(false);
 }
 
 void MainWindow::on_pushButtonPeruuta_clicked()
@@ -147,9 +152,11 @@ void MainWindow::on_pushButtonOK_clicked()
     nosto = summa.toInt();
     if(nosto % 20 == 0 || nosto % 50 == 0){
         tietokanta->nosto(nosto);
+        qDebug() << "Nostettiin:" << nosto;
     }else{
         qDebug() << "Et voi nostaa summaa:" << nosto;
     }
+    ui->stackedWidget->setCurrentIndex(1);
 
 }
 
