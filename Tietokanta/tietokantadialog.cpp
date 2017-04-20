@@ -24,4 +24,5 @@ void TietokantaDialog::luoTable(QSqlTableModel &mTable)
     ui->tableView->setModel(&mTable);
     ui->tableView->hideColumn(0);
     ui->tableView->hideColumn(1);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
 }
