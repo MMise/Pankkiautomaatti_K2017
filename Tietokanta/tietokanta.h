@@ -30,8 +30,8 @@ private:
     QSqlDatabase db;
     QSqlTableModel model;
     bool pinOk;
-    QString annettupin;
-    QString salasana;
+    int annettupin;
+    int salasana;
     QString tilinumero;
 };
 

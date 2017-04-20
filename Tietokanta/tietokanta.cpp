@@ -86,14 +86,14 @@ bool Tietokanta::vastaanotaPin(int pin)
     pinkysy.bindValue(":kortti", kortti);
     pinkysy.exec();
     while (pinkysy.next()) {
-        salasana = pinkysy.value(0).toString();
+        salasana = pinkysy.value(0).toInt();
     }
 
-    int ch = QString::compare(annettupin,salasana);
-    if(ch == 0){
+    //int ch = QString::compare(annettupin,salasana);
+    if(annettupin == salasana){
         pinOk = true;
     }
-    if (ch != 0) {
+    if (annettupin != salasana) {
         pinOk = false;
     }
     return pinOk;
