@@ -5,16 +5,20 @@ pinkoodiMoottoriDialogi::pinkoodiMoottoriDialogi(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::pinkoodiMoottoriDialogi)
 {
+    qDebug() << "Moottori luotu";
     ui->setupUi(this);
-    this->show();
-    this->exec();
     ui->lineEditPin->setValidator(new QIntValidator);
-    //connect(ui->pushButtonOK,SIGNAL(clicked(bool)),this,SLOT(klikattuOK()));
+
 }
 
 pinkoodiMoottoriDialogi::~pinkoodiMoottoriDialogi()
 {
     delete ui;
+}
+
+QString pinkoodiMoottoriDialogi::luePin()
+{
+    return pinKoodi;
 }
 
 void pinkoodiMoottoriDialogi::on_pushButton1_clicked()
@@ -75,15 +79,9 @@ void pinkoodiMoottoriDialogi::on_pushButtonC_clicked()
 void pinkoodiMoottoriDialogi::on_pushButtonOK_clicked()
 {
     pinKoodi = ui->lineEditPin->text();
-    emit passPin(pinKoodi);
     qDebug() << "Moottorilta palautettiin PIN-koodi: " << pinKoodi;
+    this->close();
 }
-
-/*void pinkoodiMoottoriDialogi::klikattuOK()
-{
-    qDebug() << "Pin-koodia palautetaan moottorilta";
-    emit passPin(pinKoodi);
-}*/
 
 
 

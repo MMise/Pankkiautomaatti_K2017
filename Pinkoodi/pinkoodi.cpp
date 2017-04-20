@@ -1,25 +1,11 @@
 #include "pinkoodi.h"
 
-
-Pinkoodi::Pinkoodi()
-{   
-
-}
-
-Pinkoodi::~Pinkoodi()
-{
-    delete pinkoodiUi;
-    pinkoodiUi = NULL;
-}
-
-QString Pinkoodi::rajapintafunktioPinkoodi()
+void Pinkoodi::rajapintafunktioPinkoodi(QString &palautettavaPin)
 { 
-    pinkoodiUi = new pinkoodiMoottoriDialogi(this);
-    connect(pinkoodiUi, SIGNAL(passPin(QString)), this, SLOT(palautaPinExelle()));
-}
-
-void Pinkoodi::palautaPinExelle()
-{
-    qDebug() << "PIN-koodia palautetaan Exelle";
-    emit pinkoodiSignaali(PIN);
+    qDebug() << "Pin: " << palautettavaPin;
+    pinkoodiUi = new pinkoodiMoottoriDialogi;
+    pinkoodiUi->show();
+    pinkoodiUi->exec();
+    QString apu = pinkoodiUi->luePin();
+    palautettavaPin = apu;
 }

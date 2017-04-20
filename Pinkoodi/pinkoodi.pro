@@ -24,3 +24,5 @@ unix {
 
 FORMS += \
     pinkoodimoottoridialogi.ui
+
+DESTDIR = C:\Users\OMISTAJ\Desktop\Kurssimateriaali\2017K\Ohjelmoinnin_sovellusprojekti\build-BankSimul-Desktop_Qt_5_7_0_MinGW_32bit-Release\release
