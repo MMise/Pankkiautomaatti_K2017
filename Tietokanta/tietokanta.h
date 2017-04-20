@@ -29,13 +29,13 @@ public:
 
 private:
     double saldo;
-    QString kortti = "0b0030522b";
+    QString kortti;
     QSqlDatabase db;
     QSqlTableModel *model;
     bool pinOk;
     int annettupin;
     int salasana;
-    QString tilinumero = "123456";
+    QString tilinumero;
 };
 
 #endif // TIETOKANTA_H
